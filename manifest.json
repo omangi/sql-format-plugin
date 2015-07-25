@@ -2,8 +2,8 @@
     "manifest_version": 2,
 
     "name": "SQL Format",
-    "description": "This extensions format a sql query ... ",
-    "version": "1.0",
+    "description": "A chrome plugin to format your SQL code",
+    "version": "1.2",
     
     "browser_action": {
         "default_icon": "icon.png",
