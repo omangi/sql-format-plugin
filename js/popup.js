@@ -14,8 +14,16 @@ var main = {
                 crossDomain: true,
                 success: function (data) {
                     self.highlightWords(data);
+                    $("#copy").show();
                 }
             });
+        });
+
+        $("#copy").click(function() {
+            var language = navigator.language;
+            var msg = self.getMessageByLanguage(language);
+
+            window.prompt(msg, $("#formatSql").text());
         });
     },
 
@@ -257,9 +265,25 @@ var main = {
 
         return data;
         
-    } 
+    },
+
+    getMessageByLanguage: function(language)
+    {
+        var msg = '';
+
+        switch (language.toLowerCase()) {
+            case 'pt-br' :
+                msg = "Para copiar pressione: Ctrl+C, Enter";
+                break;
+            default :
+                msg = "Copy to clipboard: Ctrl+C, Enter";
+        }
+
+        return msg;
+    }
 }
 
 $(document).ready(function() {
+    $("#copy").hide();
     main.init();
 });
