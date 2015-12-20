@@ -8,11 +8,11 @@ body
     color : #ff0000;
 }
 
-.leg-result {
+.format-sql {
     color : #009933;
 }
 
-.btn-format {
+.btn-default {
     background-color:#44c767;
     -moz-border-radius:28px;
     -webkit-border-radius:28px;
@@ -29,15 +29,24 @@ body
     text-align:center;
 }
 
-.btn-format:hover {
+.btn-default:hover {
 	background-color:#5cbf2a;
 }
 
-.btn-format:active {
+.btn-default:active {
 	position:relative;
 	top:1px;
 }
 
 span {
     color : blue;
+}
+
+#copySuccess {
+    font-size:18px;
+    color: green;    
+}
+
+#copyError {
+    color: red;    
 }

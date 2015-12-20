@@ -1,45 +1,60 @@
-var main = {
-    init: function() {
-        var self = this;
+const API_FORMAT_URL = 'http://sqlformat.org/api/v1/format';
 
-        $("#format").click(function() {
-            var url = "http://sqlformat.org/api/v1/format";
-            var content = {reindent: 1, sql: $("#simpleSql").val()};
+var init = function(){
 
-            $.ajax({
-                url : url,
-                data: content,
-                type: "POST",
-                dataType: "json",
-                crossDomain: true,
-                success: function (data) {
-                    self.highlightWords(data);
-                    $("#copy").show();
-                }
-            });
-        });
+    $("#format").click(function() {
+        format();
+    });
 
-        $("#copy").click(function() {
-            var language = navigator.language;
-            var msg = self.getMessageByLanguage(language);
+    $("#copy").click(function() {
+        copyToClipboard();
+    });
+};
 
-            window.prompt(msg, $("#formatSql").text());
-        });
-    },
+var format = function (){
 
-    insertResult: function(data) {
+    var content = {reindent: 1, sql: $("#simpleSql").val()};
 
-        $("#formatSql").html(data);
-    },
+    $.ajax({
+        url : API_FORMAT_URL,
+        data: content,
+        type: "POST",
+        dataType: "json",
+        crossDomain: true,
+        success: function (data) {
+            highlightWords(data);
+            $("#copy").show();
+        }
+    });
+};
 
-    highlightWords: function(data) {
+var highlightWords = function (data){
         
-        var sqlColor = this.replace(data.result);
-        this.insertResult(sqlColor);
+    var sqlColor = replace(data.result);
+    insertResult(sqlColor);
         
-    },
-    
-    replace: function(data) {
+};
+
+var insertResult = function(data) {
+
+    $("#formatSql").html(data);
+
+};
+
+var copyToClipboard = function (){
+
+    var clipboard = new Clipboard(document.getElementById('copy'));
+
+    clipboard.on('success', function(e) {
+        $("#copySuccess").show();
+    });
+
+    clipboard.on('error', function(e) {
+        $("#copyError").show();
+    });
+};
+
+var replace = function(data) {
 
         var reserved = [
             "add ",
@@ -264,26 +279,12 @@ var main = {
         }
 
         return data;
-        
-    },
-
-    getMessageByLanguage: function(language)
-    {
-        var msg = '';
-
-        switch (language.toLowerCase()) {
-            case 'pt-br' :
-                msg = "Para copiar pressione: Ctrl+C, Enter";
-                break;
-            default :
-                msg = "Copy to clipboard: Ctrl+C, Enter";
-        }
-
-        return msg;
-    }
-}
+};
 
 $(document).ready(function() {
     $("#copy").hide();
-    main.init();
+    $("#copySuccess").hide();
+    $("#copyError").hide();
+
+    init();
 });
