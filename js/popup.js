@@ -6,9 +6,7 @@ var init = function(){
         format();
     });
 
-    $("#copy").click(function() {
-        copyToClipboard();
-    });
+    copyToClipboard();
 };
 
 var format = function (){
