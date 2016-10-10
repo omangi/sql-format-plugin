@@ -1,4 +1,4 @@
-const API_FORMAT_URL = 'http://sqlformat.org/api/v1/format';
+const API_FORMAT_URL = 'https://sqlformat.org/api/v1/format';
 
 var init = function(){
 
