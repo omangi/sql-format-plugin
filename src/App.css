@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+input, select, textarea{
+    color: white;
+}
+
+/*MY CSS*/
+
+.body-dark {
+    background-color: black;
+}
+
+.legend-dark {
+    background: #5b4caf;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 0.5em 1em;
+}
+
+.legend-light {
+    background: #BFD48C;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 0.5em 1em;
+}
+
+.input-dark {
+    background-color: black;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+}
+
+.input-light {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+}
+
+fieldset {
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+legend {
+    background: #BFD48C;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 0.5em 1em;
+}
+
+label {
+    color: #666666;
+    display: block;
+    font-size: 12px;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 14px;
+    padding: 0.5em 1em 0.5em 0;
+    width: 250px;
+}
+
+input[type="text"]:focus {
+    border-bottom: 1px solid #BFD48C;     /* Border Green saat focus */
+    outline: none;
+}
+
+span {
+  color : blue;
+}
+
+.buttonload {
+    background-color: white; /* Green background */
+    border: 5px;
+    border-radius: 5px;
+    color: black; /* White text */
+    padding: 6px 10px; /* Some padding */
+    font-size: 16px; /* Set a font-size */
+}
+
+.buttonload:hover {
+    background-color:#8A2BE2;
+    cursor:pointer;
+}
