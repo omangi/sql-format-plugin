@@ -21,7 +21,7 @@ input, select, textarea{
 }
 
 .legend-dark {
-    background: #5b4caf;
+    background: #00a09b;
     color: #FFFFFF;
     margin-bottom: 10px;
     padding: 0.5em 1em;
@@ -55,6 +55,37 @@ input, select, textarea{
     border-bottom: 2px solid red;
 }
 
+.buttonload-light {
+    border:5px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 16px;
+}
+
+.buttonload-light:hover {
+    cursor:pointer;
+}
+
+.buttonload-dark {
+    background-color: ghostwhite;
+    border:5px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 16px;
+}
+
+.buttonload-dark:hover {
+    cursor:pointer;
+}
+
+.formatSql-light {
+
+}
+
+.formatSql-dark {
+    color: white;
+}
+
 fieldset {
     border: 1px solid #DDDDDD;
     font-size: 14px;
@@ -83,24 +114,10 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-bottom: 1px solid #BFD48C;     /* Border Green saat focus */
+    border-bottom: 1px solid #BFD48C;
     outline: none;
 }
 
 span {
   color : blue;
-}
-
-.buttonload {
-    background-color: white; /* Green background */
-    border: 5px;
-    border-radius: 5px;
-    color: black; /* White text */
-    padding: 6px 10px; /* Some padding */
-    font-size: 16px; /* Set a font-size */
-}
-
-.buttonload:hover {
-    background-color:#8A2BE2;
-    cursor:pointer;
 }
