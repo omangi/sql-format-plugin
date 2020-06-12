@@ -111,6 +111,7 @@ input[type="text"] {
     font-size: 14px;
     padding: 0.5em 1em 0.5em 0;
     width: 250px;
+    color: #BFD48C;
 }
 
 input[type="text"]:focus {

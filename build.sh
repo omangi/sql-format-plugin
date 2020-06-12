@@ -22,6 +22,9 @@ build() {
     cp options.js dist/options.js
     cp options.html dist/options.html
     cp options.css dist/options.css
+
+    rm dist/service-worker.js
+    rm dist/precache-manifest.3894c2e1be6ddbc54870ab84431af5ac.js
 }
 
 build
