@@ -1,6 +1,5 @@
 // Saves options to chrome.storage
 function save_options() {
-    console.log('clicked ... ' + save_options)
     //light or dark
     var selectedTheme = document.querySelector('.input-theme:checked').value;
 
@@ -28,6 +27,7 @@ function restore_options() {
         chrome.storage.sync.get({
             theme: 'light',
         }, function (items) {
+            console.log('Saved theme is ....', items)
             theme = items.theme;
             const selector = '#radio-' + theme;
             e = document.querySelector(selector);
@@ -39,5 +39,4 @@ function restore_options() {
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save-light').addEventListener('click', save_options);
-document.getElementById('save-dark').addEventListener('click', save_options);
+document.getElementById('save').addEventListener('click', save_options);

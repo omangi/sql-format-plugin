@@ -19,25 +19,42 @@ class App extends React.Component {
             query: '',
             simpleResult: null,
             result: null,
+            theme: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.sendQuery = this.sendQuery.bind(this);
+        this.loadTheme = this.loadTheme.bind(this);
     }
 
-    componentDidMount() {
-        let theme = 'light';
+    loadTheme() {
+
+        let self = this
 
         try {
+            // Use default theme = 'light'
             chrome.storage.sync.get({
                 theme: 'light',
             }, function (items) {
-                theme = items.theme;
+                self.setState({theme: items.theme});
+
             });
         } catch (e) {
-            console.log('chrome is not loaded ...')
-            theme = 'light';
+            this.setState({theme: 'light'});
         }
+    }
+
+    componentDidMount() {
+        this.loadTheme();
+
+        let self = this
+        window.setTimeout(function () {
+            self.handleTheme()
+        },500)
+    }
+
+    handleTheme() {
+        let theme = this.state.theme
 
         const bodyClass = CSS_BODY + theme;
         const legendClass = CSS_LEGEND + theme;
@@ -330,7 +347,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <fieldset>
-                    <legend className="legend"> Simple SQL</legend>
+                    <legend className="legend"> Simple SQL ({this.state.theme})</legend>
 
                     <input type="text" className={"input"} placeholder=" Type your query here ..." name="query" value={this.state.query} onChange={this.handleChange} />
 
