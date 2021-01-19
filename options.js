@@ -1,5 +1,7 @@
 // Saves options to chrome.storage
 function save_options() {
+    console.log('Handled saved button');
+
     //light or dark
     var selectedTheme = document.querySelector('.input-theme:checked').value;
 
