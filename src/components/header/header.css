@@ -1,0 +1,21 @@
+header#main-header {
+    width: 100%;
+    height: 60px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    align-items: center;
+}
+
+.menu-first {
+    display: flex;
+}
+
+.menu-top {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-top li {
+    margin-right: 30px;
+}

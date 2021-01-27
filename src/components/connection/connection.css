@@ -1,0 +1,7 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 10px solid red ;
+}
