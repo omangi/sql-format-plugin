@@ -3,7 +3,7 @@
 
     "name": "SQL Format",
     "description": "A chrome plugin to format your SQL code",
-    "version": "2.0",
+    "version": "2.1",
     
     "browser_action": {
         "default_icon": "icon.png",
