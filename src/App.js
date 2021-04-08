@@ -118,12 +118,17 @@ class App extends React.Component {
     oneLineQuery(e) {
         this.setState({load: 'fa fa-refresh fa-spin'});
 
-        let colored = this.state.query.replace(/\ /g, "");
-        colored = colored.replace(/\n/g, "");
-        colored = this.replaceWithColor(colored);
+        let query = this.state.query;
+        query = query.replace(/\n/g, "]");
+        //@todo refactor this ugly code hehe
+        query = query.replace(/\ \ /g, "");
+        query = query.replace(/\]/g, " ");
 
-        this.setState({simpleResult: this.state.query});
-        this.setState({result: colored});
+        let fullTextColored = query.replace(/\ \ /g, " ");
+        query = this.replaceWithColor(fullTextColored);
+
+        this.setState({simpleResult: fullTextColored});
+        this.setState({result: query});
         this.setState({load: null});
 
 
@@ -356,7 +361,6 @@ class App extends React.Component {
         return data;
     }
 
-
     render() {
         return (
             <div className="App">
@@ -370,9 +374,9 @@ class App extends React.Component {
                     <button className="buttonload" onClick={this.sendQuery}>
                         <i className={this.state.load}></i>Format
                     </button>
-
+                    &nbsp;&nbsp;
                     <button className="buttonload" onClick={this.oneLineQuery}>
-                        <i className={this.state.load}></i>One Line
+                        <i className={this.state.load}></i>Compress
                     </button>
                 </fieldset>
 
