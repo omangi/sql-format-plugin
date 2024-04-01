@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ # zip -r app.zip dist
+
 build() {
     echo 'building react'
 
