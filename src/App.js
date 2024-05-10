@@ -20,12 +20,17 @@ class App extends React.Component {
             simpleResult: null,
             result: null,
             theme: null,
+
+            delimiterRaw: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.sendQuery = this.sendQuery.bind(this);
         this.oneLineQuery = this.oneLineQuery.bind(this);
         this.loadTheme = this.loadTheme.bind(this);
+
+        //delimiter
+        this.delimiter = this.delimiter.bind(this);
     }
 
     loadTheme() {
@@ -110,6 +115,24 @@ class App extends React.Component {
         },)
 
         e.preventDefault();
+    }
+
+    changeTab(e) {
+        e.preventDefault();
+
+        let cityName = e.target.innerHTML
+
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        e.currentTarget.className += " active";
     }
 
     oneLineQuery(e) {
@@ -358,48 +381,127 @@ class App extends React.Component {
         return data;
     }
 
+    delimiter(e) {
+        e.preventDefault();
+        let query = this.state.delimiterRaw;
+
+        this.setState({delimiterResult: query});
+
+    }
+
     render() {
         return (
             <div className="App">
-                <fieldset>
-                    <legend className="legend"> Simple SQL ({this.state.theme})</legend>
+                <div className="tab">
+                    <button className="tablinks" onClick={this.changeTab}>Format</button>
+                    <button className="tablinks" onClick={this.changeTab}>Delimiter</button>
+                </div>
 
-                    <textarea className={"input"} placeholder=" Type your query here ..." name="query"
-                              value={this.state.query} onChange={this.handleChange}/>
+                <div id="Format" className="tabcontent">
+                    <br/>
+                    <fieldset>
+                        <legend className="legend"> Simple SQL ({this.state.theme})</legend>
+
+                        <textarea className={"input"} placeholder=" Type your query here ..." name="query"
+                                  value={this.state.query} onChange={this.handleChange}/>
+
+                        <br/>
+                        <br/>
+                        <button className="buttonload" onClick={this.sendQuery}>
+                            <i className={this.state.load}></i>Format
+                        </button>
+                        &nbsp;&nbsp;
+                        <button className="buttonload" onClick={this.oneLineQuery}>
+                            <i className={this.state.load}></i>Compress
+                        </button>
+                    </fieldset>
 
                     <br/>
-                    <br/>
-                    <button className="buttonload" onClick={this.sendQuery}>
-                        <i className={this.state.load}></i>Format
-                    </button>
-                    &nbsp;&nbsp;
-                    <button className="buttonload" onClick={this.oneLineQuery}>
-                        <i className={this.state.load}></i>Compress
-                    </button>
-                </fieldset>
+                    <fieldset>
+                        <legend className="legend"> Result</legend>
 
-                <br/>
-                <fieldset>
-                    <legend className="legend"> Result</legend>
-
-                    <pre id="formatSql">
+                        <pre id="formatSql">
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: this.state.result
                             }}></div>
                     </pre>
 
+                        <br/>
+
+                        <button style={{display: this.state.result ? 'block' : 'none'}}
+                                onClick={() => {
+                                    navigator.clipboard.writeText(this.state.simpleResult)
+                                }}
+                                className="buttonload">
+                            <i className="fa fa-clipboard" aria-hidden="true" title={"copy to clipboard"}></i>
+
+                        </button>
+                    </fieldset>
+                </div>
+
+                <div id="Delimiter" className="tabcontent">
+                    <br/>
+                    <b>Splitter:</b>
+                    <input type="radio" id="carriage_return" name="splitter" value="carriage_return"/>
+                    <label htmlFor={"carriage_return"}>Carriage Return</label>
+
+                    <input type="radio" id="tab" name="splitter" value="carriage_return"/>
+                    <label htmlFor={"tab"}>Tab</label>
+
+                    <input type="radio" id="space" name="splitter" value="carriage_return"/>
+                    <label htmlFor={"space"}>Space</label>
+
+                    <br/>
+                    <b>Output:</b>
+                    <input type="radio" id="none" name="delimiter_output" value="none"/>
+                    <label htmlFor={"none"}>None</label>
+
+                    <input type="radio" id="single_quotes" name="delimiter_output" value="none"/>
+                    <label htmlFor={"single_quotes"}>Single Quotes</label>
+
+                    <input type="radio" id="double_quotes" name="delimiter_output" value="none"/>
+                    <label htmlFor={"double_quotes"}>Double Quotes</label>
+
+                    <br/>
+                    <b>Delimiter:</b>
+                    <input type="radio" id="comma" name="delimiter_delimiter" value="none"/>
+                    <label htmlFor={"comma"}>Comma(,)</label>
+
+                    <br/>
                     <br/>
 
-                    <button style={{display: this.state.result ? 'block' : 'none'}}
-                            onClick={() => {
-                                navigator.clipboard.writeText(this.state.simpleResult)
-                            }}
-                            className="buttonload">
-                        <i className="fa fa-clipboard" aria-hidden="true" title={"copy to clipboard"}></i>
+                    <textarea rows={10} className={"input"} placeholder=" Type your input here ..." name="delimiterRaw"
+                              value={this.state.delimiterRaw} onChange={this.handleChange}/>
 
+                    <br/>
+                    <br/>
+
+                    <button className="buttonload" onClick={this.delimiter}>
+                        <i className={this.state.load}></i>Convert
                     </button>
-                </fieldset>
+
+                    <br/>
+                    <br/>
+                    <fieldset>
+                        <legend className="legend"> Result</legend>
+
+                        <div>
+                            { this.state.delimiterResult}
+                        </div>
+
+                        <br/>
+
+                        <button style={{display: this.state.result ? 'block' : 'none'}}
+                                onClick={() => {
+                                    navigator.clipboard.writeText(this.state.simpleResult)
+                                }}
+                                className="buttonload">
+                            <i className="fa fa-clipboard" aria-hidden="true" title={"copy to clipboard"}></i>
+
+                        </button>
+                    </fieldset>
+                </div>
 
                 <br/>
                 <a target="_blanck" href="https://linksdev.tech/mysql">
