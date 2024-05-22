@@ -126,29 +126,6 @@ a {
     text-decoration: none;
 }
 
-.test {
-    border-radius: 50px;
-    text-align: center;
-}
-
-.test-span {
-    font-size: 0.93456345rem;
-    background: #0a5;
-    padding: 5px 10px;
-    border-radius: 50px;
-    filter: drop-shadow(0rem 0.17rem 0.15rem #ccc);
-}
-
-.fa-whatsapp {
-    width: 15px;
-    height: 15px;
-}
-
-.learn-more {
-    font-weight: 400;
-    color: #00ab5f;
-}
-
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -185,4 +162,35 @@ a {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+.test {
+    border-radius: 50px;
+    text-align: center;
+}
+
+.test-span {
+    font-size: 0.93456345rem;
+    background: #0c85d0;
+    padding: 5px 10px;
+    border-radius: 50px;
+    filter: drop-shadow(0rem 0.17rem 0.15rem #ccc);
+    color: white;
+}
+
+.t1 {
+    font-size: 0.93456345rem;
+    background: #0c85d0;
+    padding: 5px 20px;
+    border-radius: 50px;
+    filter: drop-shadow(0rem 0.17rem 0.15rem #ccc);
+}
+
+.t2 {
+    width: 15px;height: 15px;
+}
+
+.learn-more {
+    font-weight: 400;
+    color: white;
 }

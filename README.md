@@ -5,3 +5,8 @@ add to your chrome :D
 https://chrome.google.com/webstore/detail/sql-format/pdenfccaafflklfjiofedacmilbfpepb/related
 https://chrome.google.com/webstore/detail/sql-format/pdenfccaafflklfjiofedacmilbfpepb
 
+# To run
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+npm start
+```
